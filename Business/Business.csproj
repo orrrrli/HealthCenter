@@ -57,6 +57,7 @@
     <Compile Include="Contracts\IUserRoleService.cs" />
     <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="Implementation\MedicalRecordService.cs" />
+    <Compile Include="Implementation\RoleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
