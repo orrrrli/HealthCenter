@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Data.Contracts
 {
-    public interface UserRepository : IGenericRepository<User>
+    public interface IUserRepository : IGenericRepository<User>
     {
         ICollection<MedicalRecord> GetMedicalRecords(int idUser);
         User Login(string username, string password);

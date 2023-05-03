@@ -45,10 +45,27 @@ namespace Data.Implementation
             }
         }
 
-
-        public bool RelateRole(Domain.Model.Role newRole)
+        public bool RelateRole(int idUser, int idRole)
         {
-            throw new NotImplementedException();
+            if (idUser <= 0) return false;
+            if (idRole <= 0) return false;
+            using (var ctx = new HealthCenterDBContext())
+            {
+                //Obtenemos elusuario y el proyecto a relacionar
+                var user = ctx.Users.SingleOrDefault(x => x.Id == idUser);
+                var project = ctx.MedicalRecords.SingleOrDefault(x => x.Id == idRole);
+                //validamos si existe
+                if (user == null || project == null) return false;
+
+                var existingRelation = ctx.UserRecords.SingleOrDefault(up => up.User.Id == idUser && up.medicalRecord.Id == idRole);
+                if (existingRelation != null) return true; // checamos si ya existe la relacion y la validamos
+
+                //Creamos el nuevo objeto
+                var userProject = new UserRecord { User = user, medicalRecord = project };
+                ctx.UserRecords.Add(userProject);
+                ctx.SaveChanges();
+            }
+            return true;
         }
 
         public bool Update(Role entity)

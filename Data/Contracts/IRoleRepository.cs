@@ -10,6 +10,6 @@ namespace Data.Contracts
     public interface IRoleRepository : IGenericRepository<Role> // que va aqui dentro de los contratos??
 
     {
-
+        bool RelateRole(int idUser, int idRole);
     }
 }
