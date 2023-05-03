@@ -52,6 +52,7 @@ namespace Data.Implementation
                 Sheet currentSheet = ctx.Sheets.SingleOrDefault(x => x.Id == entity.Id);
                 if (currentSheet == null) return false;
                 currentSheet.Nombre = entity.Nombre;
+                currentSheet.Status = entity.Status;
                 ctx.SaveChanges();
                 return true;
             }
