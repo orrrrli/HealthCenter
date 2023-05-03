@@ -10,7 +10,7 @@ namespace Data.Contracts
 {
     public interface IMedicalRecordRepository : IGenericRepository<MedicalRecord>
     {
-        bool RelateSheet(Sheet newSheet);
+        bool RelateSheet(int idMedicalRecord, int idSheet);
         List<User> GetUsers(int idMedicalRecord);
     }
 }

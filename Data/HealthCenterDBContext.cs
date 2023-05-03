@@ -18,6 +18,8 @@ namespace Data
         public DbSet<UserRole> UserRoles { get; set; }
 
         public DbSet <UserRecord> UserRecords { get; set; }
+
+        public DbSet <MedicalRecordSheet> medicalrecordSheets { get; set; }
         public HealthCenterDBContext() : base("HealthCenter")
         {
 

@@ -57,9 +57,30 @@ namespace Data.Implementation
             }
         }
 
-        public bool RelateSheet(Sheet newSheet)
+
+        public bool RelateSheet(int idMedicalRecord, int idSheet)
         {
-            throw new NotImplementedException();
+            if (idMedicalRecord <= 0) return false;
+            if (idSheet <= 0) return false;
+            using (var ctx = new HealthCenterDBContext())
+            {
+                //Obtenemos el MedicalRecord y la hoja a relacionar
+                var record = ctx.MedicalRecords.SingleOrDefault(x => x.Id ==idMedicalRecord);
+                var sheet = ctx.Sheets.SingleOrDefault(x => x.Id ==idSheet);
+                
+                //validamos que ambas exstan
+                if (sheet == null || record == null) return false;
+
+                var existingRelation = ctx.medicalrecordSheets.SingleOrDefault(mrs=>mrs.medicalRecord.Id==idMedicalRecord && mrs.sheet.Id==idSheet);
+                if (existingRelation == null) return false;
+
+                //creamos el nuevo objeto
+                var medicalrecordSheets = new MedicalRecordSheet {medicalRecord = record, sheet = sheet };
+                ctx.medicalrecordSheets.Add(medicalrecordSheets);
+                ctx.SaveChanges();
+            }
+            return true;
+
         }
 
         public bool Update(MedicalRecord entity)

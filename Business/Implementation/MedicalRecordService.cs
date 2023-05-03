@@ -46,9 +46,11 @@ namespace Business.Implementation
 
         }
 
-        public bool RelateSheet(Sheet newSheet)
+        public bool RelateSheet(int idMedicalRecord, int idSheet)
         {
-            throw new NotImplementedException();
+            if (idMedicalRecord <=0) return false;
+            if (idSheet <= 0) return false;
+            return _medicalRecordRepository.RelateSheet(idMedicalRecord, idSheet);
         }
 
         public bool Update(MedicalRecord medicalRecord)

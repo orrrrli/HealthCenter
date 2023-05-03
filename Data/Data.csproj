@@ -59,6 +59,9 @@
     <Compile Include="HealthCenterDBContext.cs" />
     <Compile Include="HealthCenterInitializer.cs" />
     <Compile Include="Implementation\MedicalRecordRepository.cs" />
+    <Compile Include="Implementation\RoleRepository.cs" />
+    <Compile Include="Implementation\SheetRepository.cs" />
+    <Compile Include="Implementation\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
