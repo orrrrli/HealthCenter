@@ -1,4 +1,5 @@
-﻿using Data.Contracts;
+﻿using Business.Contracts;
+using Data.Contracts;
 using Domain.Model;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Business.Implementation
 {
-    public class RoleService : IRoleRepository
+    public class RoleService : IRoleService
     {
         readonly IRoleRepository _roleRepo;
         public RoleService(IRoleRepository roleRepo)
@@ -32,6 +33,11 @@ namespace Business.Implementation
         {
             Role rol = _roleRepo.Get(id);
             return rol;
+        }
+
+        public bool RelateRole(int idUser, int idRole)
+        {
+            throw new NotImplementedException();
         }
 
         public bool Update(Role rol)

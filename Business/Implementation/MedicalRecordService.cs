@@ -10,7 +10,7 @@ using Domain;
 
 namespace Business.Implementation
 {
-    public class MedicalRecordService : IMedicalRecordRepository
+    public class MedicalRecordService : IMedicalRecordService
     {
         private readonly IMedicalRecordRepository _medicalRecordRepository;
         public MedicalRecordService(IMedicalRecordRepository medicalRecordRepository)

@@ -11,8 +11,8 @@ namespace Business.Implementation
 {
     public class UserService : IUserService
     {
-        private readonly IUserService _userRepo;
-        public UserService(IUserService userRepo)
+        private readonly IUserRepository _userRepo;
+        public UserService(IUserRepository userRepo)
         {
             _userRepo = userRepo;
         }
