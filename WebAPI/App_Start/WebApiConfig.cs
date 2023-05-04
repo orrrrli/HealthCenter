@@ -41,7 +41,14 @@ namespace WebAPI
             container.Register<IMedicalRecordService, MedicalRecordService>();
             container.Register<IMedicalRecordRepository, MedicalRecordRepository>();
 
+            //Role Controller
+            container.Register<IRoleService, RoleService>();
+            container.Register<IRoleRepository, RoleRepository>();
             
+
+            //Sheet Controller
+            container.Register<ISheetService, SheetService>();
+            container.Register<ISheetRepository, SheetRepository>();
 
             container.Verify();
             //config.DependencyResolver = new SimpleInjectorWebApiDependecyResolver(container);

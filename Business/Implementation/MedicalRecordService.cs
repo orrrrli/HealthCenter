@@ -23,7 +23,6 @@ namespace Business.Implementation
         {
             if (medicalRecord.Id <= 0) return 0;
             if (string.IsNullOrEmpty(medicalRecord.Name)) return 0;
-            if (string.IsNullOrEmpty(medicalRecord.Description)) return 0;
             return _medicalRecordRepository.Add(medicalRecord);
         }
 
@@ -48,14 +47,14 @@ namespace Business.Implementation
 
         public bool RelateSheet(int idMedicalRecord, int idSheet)
         {
-            if (idMedicalRecord <=0) return false;
+            if (idMedicalRecord <= 0) return false;
             if (idSheet <= 0) return false;
             return _medicalRecordRepository.RelateSheet(idMedicalRecord, idSheet);
         }
 
         public bool Update(MedicalRecord medicalRecord)
         {
-            if (medicalRecord.Id <=0) return false;
+            if (medicalRecord.Id <= 0) return false;
             return _medicalRecordRepository.Update(medicalRecord);
         }
     }

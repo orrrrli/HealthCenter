@@ -91,7 +91,6 @@ namespace Data.Implementation
                 MedicalRecord currentMedicalRecord = ctx.MedicalRecords.SingleOrDefault(x => x.Id == entity.Id);
                 if (currentMedicalRecord == null) return false;
                 currentMedicalRecord.Name = entity.Name;
-                currentMedicalRecord.Description = entity.Description;
                 ctx.SaveChanges();
                 return true;
             }

@@ -1,4 +1,5 @@
 ﻿using Business.Contracts;
+using Data.Contracts;
 using Domain.Model;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace Business.Implementation
 {
     public class SheetService : ISheetService
     {
-        private readonly ISheetService _sheetService;
+        private readonly ISheetRepository _sheetRepository;
 
-        public SheetService(ISheetService sheetService)
+        public SheetService(ISheetRepository sheetRepository)
         {
-            _sheetService = sheetService;
+            _sheetRepository = sheetRepository;
         }
         public int Add(Sheet sheet)
         {
@@ -22,12 +23,12 @@ namespace Business.Implementation
             if (string.IsNullOrEmpty(sheet.Nombre)) return 0;
             if (string.IsNullOrEmpty(sheet.Descripcion)) return 0;
             if (string.IsNullOrEmpty(sheet.Status)) return 0;
-            return _sheetService.Add(sheet);
+            return _sheetRepository.Add(sheet);
         }
 
         public Sheet Get(int id)
         {
-            Sheet sheet = _sheetService.Get(id);
+            Sheet sheet = _sheetRepository.Get(id);
             return sheet;
         }
 
@@ -37,13 +38,13 @@ namespace Business.Implementation
             if (string.IsNullOrEmpty(sheet.Nombre)) return false;
             if (string.IsNullOrEmpty(sheet.Descripcion)) return false;
             if (string.IsNullOrEmpty(sheet.Status)) return false;
-            return _sheetService.Update(sheet);
+            return _sheetRepository.Update(sheet);
         }
 
         public bool Delete(int id)
         {
             if (id <= 0) return false;
-            return (_sheetService.Delete(id));
+            return (_sheetRepository.Delete(id));
         }
 
     }
