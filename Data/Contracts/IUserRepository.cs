@@ -12,7 +12,7 @@ namespace Data.Contracts
     {
         ICollection<MedicalRecord> GetMedicalRecords(int idUser);
         User Login(string username, string password);
-        bool RelateProject(int idUser, int idProject);
+        bool RelateMedicalRecords(int idUser, int idMedicalRecord);
 
     }
 }

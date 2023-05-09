@@ -10,6 +10,7 @@ using SimpleInjector.Lifestyles;
 using SimpleInjector.Integration.WebApi;
 using Business.Contracts;
 using Business.Implementation;
+using System.Web.Http.Cors;
 
 namespace WebAPI
 {
@@ -22,6 +23,9 @@ namespace WebAPI
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

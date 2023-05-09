@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebAPI.Model;
 
 namespace WebAPI.Controllers
 {
@@ -60,6 +61,15 @@ namespace WebAPI.Controllers
             bool deleted = _userService.Delete(id);
             if (!deleted) return NotFound();
             return Ok();
+        }
+
+        [Route("login")]
+        [HttpPost]
+        public IHttpActionResult LoginUser([FromBody] UserDTO user)
+        {
+            if (user.Email == null) return BadRequest();
+            if (user.Password == null) return BadRequest();
+            return Ok(_userService.Login(user.Email, user.Password));
         }
     }
 }

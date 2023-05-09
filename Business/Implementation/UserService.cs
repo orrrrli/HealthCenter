@@ -1,6 +1,7 @@
 ﻿using Business.Contracts;
 using Data.Contracts;
 using Domain;
+using Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,25 @@ namespace Business.Implementation
             if (string.IsNullOrEmpty(user.Password)) return false;
             if (string.IsNullOrEmpty(user.UserName)) return false;
             return _userRepo.Update(user);
+        }
+
+        public bool RelateMedicalRecords(int idUser, int idMedicalRecord)
+        {
+            if (idUser <= 0) return false;
+            if (idMedicalRecord <= 0) return false;
+            return _userRepo.RelateMedicalRecords(idUser, idMedicalRecord);
+        }
+        public ICollection<MedicalRecord> GetMedicalRecords(int idUser)
+        {
+            if (idUser <= 0) return null;
+            List<MedicalRecord> medicalrecordList = _userRepo.GetMedicalRecords(idUser).ToList();
+            return medicalrecordList;
+        }
+
+        public User Login(string username, string password)
+        {
+            if (username == null || password == null) return null;
+            return _userRepo.Login(username, password);
         }
     }
 }

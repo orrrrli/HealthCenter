@@ -62,24 +62,24 @@ namespace Data.Implementation
             }
         }
 
-        public bool RelateProject(int idUser, int idProject)
+        public bool RelateMedicalRecords(int idUser, int idMedicalRecord)
         {
             if (idUser <= 0) return false;
-            if (idProject <= 0) return false;
+            if (idMedicalRecord <= 0) return false;
             using (var ctx = new HealthCenterDBContext())
             {
                 //Obtenemos elusuario y el proyecto a relacionar
                 var user = ctx.Users.SingleOrDefault(x => x.Id == idUser);
-                var project = ctx.MedicalRecords.SingleOrDefault(x => x.Id == idProject);
+                var medicalRecord = ctx.MedicalRecords.SingleOrDefault(x => x.Id == idMedicalRecord);
                 //validamos si existe
-                if (user == null || project == null) return false;
+                if (user == null || medicalRecord == null) return false;
 
-                var existingRelation = ctx.UserRecords.SingleOrDefault(up => up.User.Id == idUser && up.medicalRecord.Id == idProject);
+                var existingRelation = ctx.UserRecords.SingleOrDefault(up => up.User.Id == idUser && up.medicalRecord.Id == idMedicalRecord);
                 if (existingRelation != null) return true; // checamos si ya existe la relacion y la validamos
 
                 //Creamos el nuevo objeto
-                var userProject = new UserRecord { User = user, medicalRecord = project };
-                ctx.UserRecords.Add(userProject);
+                var userMedicalRecord = new UserRecord { User = user, medicalRecord = medicalRecord };
+                ctx.UserRecords.Add(userMedicalRecord);
                 ctx.SaveChanges();
             }
             return true;

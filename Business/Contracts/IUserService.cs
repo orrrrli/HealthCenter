@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,11 @@ namespace Business.Contracts
         bool Update(User user);
         //Delete
         bool Delete(int id);
+
+        //RelateProjects
+        bool RelateMedicalRecords(int idUser, int idProject);
+
+        ICollection<MedicalRecord> GetMedicalRecords(int idUser);
+        User Login(string username, string password);
     }
 }
