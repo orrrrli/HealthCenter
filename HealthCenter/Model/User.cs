@@ -18,6 +18,7 @@ namespace Domain
         public string UserName { get; set; }
         public int Phone { get; set; }
         public List<UserRecord> UserRecords { get; set; }
+        public List <UserRole> UserRoles { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
 

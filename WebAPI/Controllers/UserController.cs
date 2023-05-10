@@ -56,12 +56,32 @@ namespace WebAPI.Controllers
 
         [Route("{id}")]
         [HttpDelete]
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete([FromUri] int id)
         {
-            bool deleted = _userService.Delete(id);
-            if (!deleted) return NotFound();
-            return Ok();
+            if (id <= 0) return BadRequest();
+            bool u = _userService.Delete(id);
+            if (u) return BadRequest();
+            return Ok(u);
         }
+        [Route("record/{id}")]
+
+        public IHttpActionResult GetMedicalRecord([FromUri] int id)
+        {
+            if (id <= 0) return BadRequest();
+            List<MedicalRecord> medicalRecordList = _userService.GetMedicalRecords(id).ToList();
+            return Ok(medicalRecordList);
+        }
+
+        [Route("{idUser}/record/{idMedicalRecord}")]
+        [HttpPost]
+        public IHttpActionResult RelateMedicalRecords([FromUri] int idUser, [FromUri] int idMedicalRecord)
+        {
+            if (idUser <= 0) return BadRequest();
+            if (idMedicalRecord <= 0) return BadRequest();
+            return Ok(_userService.RelateMedicalRecords(idUser, idMedicalRecord));
+        }
+
+
 
         [Route("login")]
         [HttpPost]

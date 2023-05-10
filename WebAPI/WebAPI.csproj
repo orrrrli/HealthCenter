@@ -165,6 +165,7 @@
     <Folder Include="Views\MedicalRecord\" />
     <Folder Include="Views\Role\" />
     <Folder Include="Views\Sheet\" />
+    <Folder Include="Views\userRecord\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
