@@ -35,11 +35,6 @@ namespace Business.Implementation
             return rol;
         }
 
-        public bool RelateRole(int idUser, int idRole)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool Update(Role rol)
         {
             if (rol.Id <= 0) return false;

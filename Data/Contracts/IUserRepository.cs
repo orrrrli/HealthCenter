@@ -11,11 +11,16 @@ namespace Data.Contracts
     public interface IUserRepository : IGenericRepository<User>
     {
         User Login(string username, string password);
-        ICollection<MedicalRecord> GetMedicalRecords(int idUser);
+
+        //Conecta con la tabla de medical record
+
+        ICollection<MedicalRecord> GetMedicalRecords(int idUser); //Obtiene los Medical Records APARTIR DE USER
         
         bool RelateMedicalRecords(int idUser, int idMedicalRecord);
 
-        ICollection<Role> GetRole(int idUser);
+        //Conecta con la tabla de roles
+
+        ICollection<Role> GetRole(int idUser); // Obtiene los Roles APARTIR DE USER
 
         bool RelateRole(int idUser, int idRole);
 

@@ -1,7 +1,9 @@
 ﻿using Data.Contracts;
+using Domain;
 using Domain.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +43,18 @@ namespace Data.Implementation
             {
                 Sheet currentSheet = ctx.Sheets.SingleOrDefault(x => x.Id == id);
                 return currentSheet;
+            }
+        }
+
+        public List<MedicalRecord> GetMedicalRecord(int idSheet)
+        { 
+            if (idSheet <= 0) return null;
+            using (var ctx = new HealthCenterDBContext())
+            {
+                var recordSheet = ctx.medicalrecordSheets.Where(mrs => mrs.sheet.Id == idSheet)
+                                    .Include(mrs => mrs.medicalRecord).Select(mrs => mrs.medicalRecord).ToList();
+
+                return recordSheet;
             }
         }
 

@@ -80,7 +80,6 @@
     <Compile Include="Contracts\IMedicalRecordRepository.cs" />
     <Compile Include="Contracts\IRoleRepository.cs" />
     <Compile Include="Contracts\ISheetRepository.cs" />
-    <Compile Include="Contracts\IUserRoleRepository.cs" />
     <Compile Include="Contracts\IUserRepository.cs" />
     <Compile Include="HealthCenterDBContext.cs" />
     <Compile Include="HealthCenterInitializer.cs" />

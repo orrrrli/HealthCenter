@@ -19,7 +19,7 @@ namespace Business.Contracts
         //Delete
         bool Delete(int id);
 
-        //RelateProjects
+        //Relate Medical Records
         bool RelateMedicalRecords(int idUser, int idMedicalRecord);
 
         ICollection<MedicalRecord> GetMedicalRecords(int idUser);

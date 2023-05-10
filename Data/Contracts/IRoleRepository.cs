@@ -1,4 +1,5 @@
-﻿using Domain.Model;
+﻿using Domain;
+using Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Data.Contracts
 {
-    public interface IRoleRepository : IGenericRepository<Role> // que va aqui dentro de los contratos??
+    public interface IRoleRepository : IGenericRepository<Role> 
 
     {
-        bool RelateRole(int idUser, int idRole);
+        List<User> GetUsers(int idRole); // Metodo para relacionarlo con la tabla intermedia
     }
 }

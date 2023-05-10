@@ -1,4 +1,5 @@
 ﻿using Business.Contracts;
+using Business.Implementation;
 using Domain;
 using Domain.Model;
 using System;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebAPI.Model;
 
 namespace WebAPI.Controllers
 {
@@ -59,6 +61,27 @@ namespace WebAPI.Controllers
             bool deleted = _medicalrecordService.Delete(id);
             if (!deleted) return NotFound();
             return Ok();
+        }
+
+  
+
+        [Route("{idMedicalRecord}/sheet/{idSheet}")]
+        [HttpPost]
+        public IHttpActionResult RelateSheet([FromUri] int idMedicalRecord, [FromUri] int idSheet)
+        {
+            if (idMedicalRecord <= 0) return BadRequest();
+            if (idSheet <= 0) return BadRequest();
+            return Ok(_medicalrecordService.RelateSheet(idMedicalRecord,idSheet));
+        }
+
+
+        //Relate Role Methods
+        [Route("sheet/{idSheet}")]
+        public IHttpActionResult GetRole([FromUri] int id)
+        {
+            if (id < 0) return BadRequest();
+            List<Sheet> sheetList = _medicalrecordService.GetSheet(id).ToList();
+            return Ok(sheetList);
         }
     }
 }

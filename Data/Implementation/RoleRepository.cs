@@ -1,7 +1,9 @@
 ﻿using Data.Contracts;
+using Domain;
 using Domain.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,28 +47,19 @@ namespace Data.Implementation
             }
         }
 
-        public bool RelateRole(int idUser, int idRole)
+        public List<User> GetUsers(int idRole)
         {
-            if (idUser <= 0) return false;
-            if (idRole <= 0) return false;
+            if (idRole <= 0) return null;
             using (var ctx = new HealthCenterDBContext())
             {
-                //Obtenemos elusuario y el proyecto a relacionar
-                var user = ctx.Users.SingleOrDefault(x => x.Id == idUser);
-                var project = ctx.MedicalRecords.SingleOrDefault(x => x.Id == idRole);
-                //validamos si existe
-                if (user == null || project == null) return false;
+                var userRole = ctx.UserRoles.Where(ur => ur.theRole.Id == idRole)
+                                    .Include(ur => ur.theUser).Select(ur => ur.theUser).ToList();
 
-                var existingRelation = ctx.UserRecords.SingleOrDefault(up => up.User.Id == idUser && up.medicalRecord.Id == idRole);
-                if (existingRelation != null) return true; // checamos si ya existe la relacion y la validamos
-
-                //Creamos el nuevo objeto
-                var userProject = new UserRecord { User = user, medicalRecord = project };
-                ctx.UserRecords.Add(userProject);
-                ctx.SaveChanges();
+                return userRole;
             }
-            return true;
         }
+
+
 
         public bool Update(Role entity)
         {

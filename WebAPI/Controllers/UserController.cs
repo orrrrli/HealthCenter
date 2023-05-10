@@ -85,7 +85,7 @@ namespace WebAPI.Controllers
 
         //Relate Role Methods
         [Route("role/{idRole}")]
-        public IHttpActionResult GetMedicalREcord([FromUri] int id)
+        public IHttpActionResult GetRole([FromUri] int id)
         {
             if (id < 0) return BadRequest();
             List<Role> roleList = _userService.GetRole(id).ToList();

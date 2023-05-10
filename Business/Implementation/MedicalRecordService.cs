@@ -38,11 +38,20 @@ namespace Business.Implementation
             return u;
         }
 
+
+
         public List<User> GetUsers(int idMedicalRecord)
         {
             if (idMedicalRecord <= 0) return null;
             return _medicalRecordRepository.GetUsers(idMedicalRecord);
 
+        }
+
+        public ICollection<Sheet> GetSheet(int IdMedicalRecord)
+        {
+            if (IdMedicalRecord <= 0) return null;
+            List<Sheet> sheetList = _medicalRecordRepository.GetSheets(IdMedicalRecord).ToList();
+            return sheetList;
         }
 
         public bool RelateSheet(int idMedicalRecord, int idSheet)

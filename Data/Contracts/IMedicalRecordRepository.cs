@@ -10,7 +10,12 @@ namespace Data.Contracts
 {
     public interface IMedicalRecordRepository : IGenericRepository<MedicalRecord>
     {
+
+        ICollection<Sheet> GetSheets(int idMedicalRecord); //Obtiene las sheet APARTIR DEL RECORD
+
         bool RelateSheet(int idMedicalRecord, int idSheet);
-        List<User> GetUsers(int idMedicalRecord);
+
+
+        List<User> GetUsers(int idMedicalRecord); // Permite linkear con la tabla intermedio
     }
 }

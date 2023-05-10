@@ -14,5 +14,10 @@ namespace Business.Contracts
         bool Update(MedicalRecord medicalRecord);
 
         bool Delete(int id);
+
+        //RelateSheet
+        bool RelateSheet(int idMedicalRecord, int idSheet);
+
+        ICollection<Sheet> GetSheet(int IdSheet);
     }
 }

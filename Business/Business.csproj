@@ -78,7 +78,6 @@
     <Compile Include="Contracts\IMedicalRecordService.cs" />
     <Compile Include="Contracts\IRoleService.cs" />
     <Compile Include="Contracts\ISheetService.cs" />
-    <Compile Include="Contracts\IUserRoleService.cs" />
     <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="Implementation\MedicalRecordService.cs" />
     <Compile Include="Implementation\RoleService.cs" />
