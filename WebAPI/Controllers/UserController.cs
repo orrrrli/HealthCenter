@@ -63,6 +63,8 @@ namespace WebAPI.Controllers
             if (u) return BadRequest();
             return Ok(u);
         }
+
+        //Relate Medical Record Methods
         [Route("record/{id}")]
 
         public IHttpActionResult GetMedicalRecord([FromUri] int id)
@@ -81,6 +83,25 @@ namespace WebAPI.Controllers
             return Ok(_userService.RelateMedicalRecords(idUser, idMedicalRecord));
         }
 
+        //Relate Role Methods
+        [Route("role/{idRole}")]
+        public IHttpActionResult GetMedicalREcord([FromUri] int id)
+        {
+            if (id < 0) return BadRequest();
+            List<Role> roleList = _userService.GetRole(id).ToList();
+            return Ok(roleList);
+        }
+
+        [Route("{idUser}/role/{idRole}")]
+        [HttpPost]
+        public IHttpActionResult RelateRole([FromUri] int idUser, [FromUri] int idRole)
+        {
+            if (idUser <= 0) return BadRequest();
+            if (idRole <= 0) return BadRequest();
+            return Ok(_userService.RelateRole(idUser, idRole));
+        }
+
+        //Login
 
 
         [Route("login")]

@@ -10,9 +10,15 @@ namespace Data.Contracts
 {
     public interface IUserRepository : IGenericRepository<User>
     {
-        ICollection<MedicalRecord> GetMedicalRecords(int idUser);
         User Login(string username, string password);
+        ICollection<MedicalRecord> GetMedicalRecords(int idUser);
+        
         bool RelateMedicalRecords(int idUser, int idMedicalRecord);
+
+        ICollection<Role> GetRole(int idUser);
+
+        bool RelateRole(int idUser, int idRole);
+
 
     }
 }

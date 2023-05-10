@@ -48,6 +48,7 @@ namespace Business.Implementation
             return _userRepo.Update(user);
         }
 
+        //Relate medical records
         public bool RelateMedicalRecords(int idUser, int idMedicalRecord)
         {
             if (idUser <= 0) return false;
@@ -61,10 +62,28 @@ namespace Business.Implementation
             return medicalrecordList;
         }
 
+        //Relate role
+
+        public bool RelateRole(int idUser, int idRole)
+        {
+            if (idUser <= 0) return false;
+            if (idRole <= 0) return false;
+            return _userRepo.RelateRole(idUser, idRole);
+        }
+        public ICollection<Role> GetRole(int idUser)
+        {
+            if (idUser <= 0) return null;
+            List<Role> roleList = _userRepo.GetRole(idUser).ToList();
+            return roleList;
+        }
+
+
+
         public User Login(string username, string password)
         {
             if (username == null || password == null) return null;
             return _userRepo.Login(username, password);
         }
+
     }
 }

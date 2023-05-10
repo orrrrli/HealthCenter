@@ -50,13 +50,47 @@ namespace Data.Implementation
             }
         }
 
+
+        public ICollection<Role> GetRole (int idUser)
+        {
+            if (idUser <= 0) return null;
+            using (var ctx = new HealthCenterDBContext())
+            {
+                var userRoles= ctx.UserRoles.Where(urol => urol.theUser.Id == idUser)
+                                    .Include(ur => ur.theRole).Select(ur => ur.theRole).ToList();
+                return userRoles;
+            }
+        }
+
+        public bool RelateRole(int idUser, int idRole)
+        {
+            if (idUser <= 0) return false;
+            if (idRole <= 0) return false;
+            using (var ctx = new HealthCenterDBContext())
+            {
+                //Obtenemos elusuario y el proyecto a relacionar
+                var user = ctx.Users.SingleOrDefault(x => x.Id == idUser);
+                var role = ctx.Roles.SingleOrDefault(x => x.Id == idRole);
+                //validamos si existe
+                if (user == null || role == null) return false;
+
+                var existingRelation = ctx.UserRoles.SingleOrDefault(ur=> ur.theUser.Id == idUser && ur.theRole.Id == idRole);
+                if (existingRelation != null) return true; // checamos si ya existe la relacion y la validamos
+
+                //Creamos el nuevo objeto
+                var userRole = new UserRole { theUser = user, theRole = role };
+                ctx.UserRoles.Add(userRole);
+                ctx.SaveChanges();
+            }
+            return true;
+        }
         public ICollection<MedicalRecord> GetMedicalRecords(int idUser)
         {
             if (idUser <= 0) return null;
             using (var ctx = new HealthCenterDBContext())
             {
-                var userProjects = ctx.UserRecords.Where(up => up.User.Id == idUser)
-                                    .Include(up => up.medicalRecord).Select(up => up.medicalRecord).ToList();
+                var userProjects = ctx.UserRecords.Where(ur => ur.User.Id == idUser)
+                                    .Include(ur => ur.medicalRecord).Select(ur => ur.medicalRecord).ToList();
 
                 return userProjects;
             }
@@ -74,7 +108,7 @@ namespace Data.Implementation
                 //validamos si existe
                 if (user == null || medicalRecord == null) return false;
 
-                var existingRelation = ctx.UserRecords.SingleOrDefault(up => up.User.Id == idUser && up.medicalRecord.Id == idMedicalRecord);
+                var existingRelation = ctx.UserRecords.SingleOrDefault(ur => ur.User.Id == idUser && ur.medicalRecord.Id == idMedicalRecord);
                 if (existingRelation != null) return true; // checamos si ya existe la relacion y la validamos
 
                 //Creamos el nuevo objeto
