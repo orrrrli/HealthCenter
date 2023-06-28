@@ -57,35 +57,25 @@ namespace Data.Implementation
             }
         }
 
-        public ICollection<Sheet> GetSheets(int idMedicalRecord)
-        {
-            if (idMedicalRecord <= 0) return null;
-            using (var ctx = new HealthCenterDBContext())
-            {
-                var medicalRecordSheet = ctx.medicalrecordSheets.Where(ms => ms.medicalRecord.Id == idMedicalRecord)
-                                    .Include(ms => ms.sheet).Select(ms => ms.sheet).ToList();
-                return medicalRecordSheet;
-            }
-        }
 
-        public bool RelateSheet(int idMedicalRecord, int idSheet)
+        public bool RelateUser(int idMedicalRecord, int idUser)
         {
             if (idMedicalRecord <= 0) return false;
-            if (idSheet <= 0) return false;
+            if (idUser <= 0) return false;
             using (var ctx = new HealthCenterDBContext())
             {
                 //Obtenemos elusuario y el proyecto a relacionar
                 var record = ctx.MedicalRecords.SingleOrDefault(x => x.Id == idMedicalRecord);
-                var sheet = ctx.Sheets.SingleOrDefault(x => x.Id == idSheet);
+                var user = ctx.Users.SingleOrDefault(x => x.Id == idUser);
                 //validamos si existe
-                if (record == null || sheet == null) return false;
+                if (record == null || user == null) return false;
 
-                var existingRelation = ctx.medicalrecordSheets.SingleOrDefault(ur => ur.medicalRecord.Id == idMedicalRecord && ur.sheet.Id == idSheet);
+                var existingRelation = ctx.UserRecords.SingleOrDefault(ur => ur.medicalRecord.Id == idMedicalRecord && ur.User.Id == idUser);
                 if (existingRelation != null) return true; // checamos si ya existe la relacion y la validamos
 
                 //Creamos el nuevo objeto
-                var medicalrecordSheet = new MedicalRecordSheet { medicalRecord = record , sheet = sheet };
-                ctx.medicalrecordSheets.Add(medicalrecordSheet);
+                var medicalrecordUser = new UserRecord { medicalRecord = record , User = user };
+                ctx.UserRecords.Add(medicalrecordUser);
                 ctx.SaveChanges();
             }
             return true;

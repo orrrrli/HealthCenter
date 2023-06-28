@@ -13,7 +13,10 @@ namespace Domain.Model
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<MedicalRecordSheet> medicalRecordSheets { get; set; }
+        public double Size { get; set; }
+        public double sBP { get; set; } //systolic blood pressure
+
+        public double dBP { get; set; } // diastolic blood pressure
         public DateTime CreatedDate { get; set; }
         public List<UserRecord> UsersRecords { get; set; }
     }

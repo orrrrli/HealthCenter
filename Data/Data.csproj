@@ -88,9 +88,9 @@
     <Compile Include="Implementation\RoleRepository.cs" />
     <Compile Include="Implementation\SheetRepository.cs" />
     <Compile Include="Implementation\UserRepository.cs" />
-    <Compile Include="Migrations\202305040133580_init.cs" />
-    <Compile Include="Migrations\202305040133580_init.designer.cs">
-      <DependentUpon>202305040133580_init.cs</DependentUpon>
+    <Compile Include="Migrations\202306281821478_int.cs" />
+    <Compile Include="Migrations\202306281821478_int.designer.cs">
+      <DependentUpon>202306281821478_int.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,8 +106,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202305040133580_init.resx">
-      <DependentUpon>202305040133580_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306281821478_int.resx">
+      <DependentUpon>202306281821478_int.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

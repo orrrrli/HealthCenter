@@ -65,24 +65,15 @@ namespace WebAPI.Controllers
 
   
 
-        [Route("{idMedicalRecord}/sheet/{idSheet}")]
+        [Route("{idMedicalRecord}/user/{idUSer}")]
         [HttpPost]
-        public IHttpActionResult RelateSheet([FromUri] int idMedicalRecord, [FromUri] int idSheet)
+        public IHttpActionResult RelateSheet([FromUri] int idMedicalRecord, [FromUri] int idUser)
         {
             if (idMedicalRecord <= 0) return BadRequest();
-            if (idSheet <= 0) return BadRequest();
-            return Ok(_medicalrecordService.RelateSheet(idMedicalRecord,idSheet));
+            if (idUser <= 0) return BadRequest();
+            return Ok(_medicalrecordService.RelateUser(idMedicalRecord,idUser));
         }
 
-
-        //Relate Role Methods
-        [Route("sheet/{idSheet}")]
-        public IHttpActionResult GetRole([FromUri] int id)
-        {
-            if (id < 0) return BadRequest();
-            List<Sheet> sheetList = _medicalrecordService.GetSheet(id).ToList();
-            return Ok(sheetList);
-        }
     }
 }
         

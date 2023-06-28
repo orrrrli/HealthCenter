@@ -19,7 +19,6 @@ namespace Business.Implementation
         }
         public int Add(User user)
         {
-            if (user.Id <= 0) return 0;
             if (string.IsNullOrEmpty(user.Email)) return 0;
             if (string.IsNullOrEmpty(user.Password)) return 0;
             return _userRepo.Add(user);

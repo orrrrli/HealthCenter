@@ -10,7 +10,8 @@ namespace Data.Contracts
 {
     public interface ISheetRepository : IGenericRepository <Sheet>
     {
-        List<MedicalRecord> GetMedicalRecord(int idSheet);
+        bool RelateUser(int idUser, int idSheet); //Permite saber donde a que usuario le pertenece esta hoja
 
+        List<User> GetUsers(int idSheet); // Permite linkear con la tabla intermedio
     }
 }

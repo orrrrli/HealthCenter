@@ -19,10 +19,6 @@ namespace Business.Implementation
         }
         public int Add(Sheet sheet)
         {
-            if (sheet.Id <= 0) return 0;
-            if (string.IsNullOrEmpty(sheet.Nombre)) return 0;
-            if (string.IsNullOrEmpty(sheet.Descripcion)) return 0;
-            if (string.IsNullOrEmpty(sheet.Status)) return 0;
             return _sheetRepository.Add(sheet);
         }
 
@@ -35,9 +31,6 @@ namespace Business.Implementation
         public bool Update(Sheet sheet)
         {
             if (sheet.Id <= 0) return false;
-            if (string.IsNullOrEmpty(sheet.Nombre)) return false;
-            if (string.IsNullOrEmpty(sheet.Descripcion)) return false;
-            if (string.IsNullOrEmpty(sheet.Status)) return false;
             return _sheetRepository.Update(sheet);
         }
 

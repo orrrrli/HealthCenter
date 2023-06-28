@@ -11,8 +11,13 @@ namespace Domain.Model
     {
         [Key]
         public int Id { get; set; }
-        public String Nombre { get; set; }
-        public String Descripcion { get; set; }
-        public String Status { get; set; }
+        public bool mellitusDiabetes { get; set; }
+        public bool arterialHypertension { get; set; }
+        public bool hypercholesterolemia { get; set; }
+        public bool hypertriglyceridemia { get; set; }
+        public bool chronicRenalFailure { get; set; }
+        public bool heartDisease { get; set; }
+
+        public bool liverDiseases { get; set; }
     }
 }

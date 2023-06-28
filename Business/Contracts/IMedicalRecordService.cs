@@ -1,4 +1,5 @@
-﻿using Domain.Model;
+﻿using Domain;
+using Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,9 @@ namespace Business.Contracts
 
         bool Delete(int id);
 
-        //RelateSheet
-        bool RelateSheet(int idMedicalRecord, int idSheet);
+        //RelateUser
+        bool RelateUser(int idMedicalRecord, int idUser);
 
-        ICollection<Sheet> GetSheet(int IdSheet);
+        ICollection<User> GetUser(int IdUser);
     }
 }

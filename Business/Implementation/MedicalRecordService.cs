@@ -40,25 +40,19 @@ namespace Business.Implementation
 
 
 
-        public List<User> GetUsers(int idMedicalRecord)
+        public ICollection <User> GetUser(int idMedicalRecord)
         {
             if (idMedicalRecord <= 0) return null;
             return _medicalRecordRepository.GetUsers(idMedicalRecord);
 
         }
 
-        public ICollection<Sheet> GetSheet(int IdMedicalRecord)
-        {
-            if (IdMedicalRecord <= 0) return null;
-            List<Sheet> sheetList = _medicalRecordRepository.GetSheets(IdMedicalRecord).ToList();
-            return sheetList;
-        }
 
-        public bool RelateSheet(int idMedicalRecord, int idSheet)
+        public bool RelateUser(int idMedicalRecord, int idUser)
         {
             if (idMedicalRecord <= 0) return false;
-            if (idSheet <= 0) return false;
-            return _medicalRecordRepository.RelateSheet(idMedicalRecord, idSheet);
+            if (idUser <= 0) return false;
+            return _medicalRecordRepository.RelateUser(idMedicalRecord, idUser);
         }
 
         public bool Update(MedicalRecord medicalRecord)
@@ -66,5 +60,6 @@ namespace Business.Implementation
             if (medicalRecord.Id <= 0) return false;
             return _medicalRecordRepository.Update(medicalRecord);
         }
+
     }
 }

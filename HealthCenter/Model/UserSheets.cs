@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Model
 {
-    public class MedicalRecordSheet
+    public class UserSheets
     {
         [Key]
         public int Id { get; set; }
-        public MedicalRecord medicalRecord { get; set; }
+        public User user { get; set; }
         public Sheet sheet { get; set; }
     }
 }
