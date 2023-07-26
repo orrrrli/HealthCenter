@@ -1,4 +1,4 @@
-## Readme.txt - Health Center Backend Project
+## Health Center Backend Project
 
 This readme.txt provides an overview of the Health Center Backend Project, which is built using C#. The project aims to manage patients (users), medical records, and medical sheets for a health center or medical institution.
 
